@@ -13,4 +13,21 @@ interface ApiService {
     @POST("api/usuarios/registro")
     fun registrar(@Body registroRequest: RegistroRequest): Call<Usuario>
 
+    // --- Escuelas ---
+    @GET("api/escuelas")
+    fun obtenerEscuelas(): Call<List<Escuela>>
+
+    // --- Eventos ---
+    @GET("api/eventos")
+    fun obtenerEventos(): Call<List<Evento>>
+
+    @POST("api/eventos")
+    fun crearEvento(@Body eventoRequest: EventoRequest): Call<Void>
+
+    @PUT("api/eventos/{id}")
+    fun actualizarEvento(@Path("id") id: Long, @Body eventoRequest: EventoRequest): Call<Void>
+
+    @DELETE("api/eventos/{id}")
+    fun eliminarEvento(@Path("id") id: Long): Call<Void>
+
 }

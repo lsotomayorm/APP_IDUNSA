@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/nombreTorneo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Torneo"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editarButton" />
+
+    <TextView
+        android:id="@+id/tipoTorneo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tipo: Fútbol"
+        app:layout_constraintTop_toBottomOf="@id/nombreTorneo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/fechaTorneo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha: 2025-08-10"
+        app:layout_constraintTop_toBottomOf="@id/tipoTorneo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/horaTorneo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hora: 10:00"
+        app:layout_constraintTop_toBottomOf="@id/fechaTorneo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/direccionTorneo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Dirección: Estadio Nacional"
+        app:layout_constraintTop_toBottomOf="@id/horaTorneo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/editarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp" />
+
+    <Button
+        android:id="@+id/eliminarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        app:layout_constraintTop_toBottomOf="@id/editarButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

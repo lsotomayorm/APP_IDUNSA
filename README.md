@@ -201,6 +201,8 @@ classDiagram
 
 ### 🧠 Prácticas de Desarrollo Aplicadas:
 
+#### 🔹 Estilos de Programación:
+
 ```kotlin
 @Entity
 data class Torneo(
@@ -233,4 +235,4 @@ Las gestiónes de desarrollo en equipos se realizaron con la herramienta Trello:
 
 ![Trello de Proyecto](./docs/img/Trello.png)
 
-Enlace a [Trello](https://trello.com/invite/b/682c0773f278198ff928e567/ATTIf7f6967ec48dcb9369f59aa235ceb7689F4B2953/idunsa-app-gestion-de-eventos-deportivos)
+Enlace a [Trello](https://trello.com/invite/b/682c0773f278198ff928e567/ATTIf7f6967ec48dcb9369f59aa235ceb7689F4B2953/idunsa-app-gestion-de-eventos-deportivos) del proyecto.

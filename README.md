@@ -233,6 +233,120 @@ data class Torneo(
 
 El uso de la anotación @Entity de JPA/Hibernate, que indica que la clase Torneo representa una tabla persistente en una base de datos relacional. Las anotaciones como @Id, @GeneratedValue, @ManyToOne, y @JoinColumn son típicas del mapeo objeto-relacional (ORM), que es característico del estilo Persistent-Tables.
 
+##### 2. Things
+
+```kotlin
+data class TorneoRequestDTO(
+    val nombre: String,
+    val fecha: String,
+    val hora: String,
+    val direccion: String,
+    val eventoId: Long,
+    val deporteId: Int 
+)
+```
+
+El código define un DTO (Data Transfer Object), que es una estructura de datos simple utilizada para transportar información entre procesos, capas o servicios. No contiene lógica de negocio ni comportamiento, solo datos agrupados, lo cual es característico del estilo Things (objetos que representan cosas o datos).
+
+##### 3. RESTful
+
+```kotlin
+@RestController
+@RequestMapping("/api/deportes")
+class DeporteController(
+    private val deporteService: DeporteService
+) {
+
+    @GetMapping
+    fun obtenerDeportes(): List<DeporteResponseDTO> {
+        return deporteService.obtenerTodos()
+    }
+
+    @GetMapping("/buscar")
+    fun obtenerDeportePorNombre(@RequestParam nombre: String): ResponseEntity<DeporteResponseDTO> {
+        val deporte = deporteService.obtenerPorNombre(nombre)
+            ?: return ResponseEntity.notFound().build()
+        return ResponseEntity.ok(deporte)
+    }
+}
+```
+
+El uso de anotaciones como @RestController, @RequestMapping, @GetMapping indica que este controlador expone una API web siguiendo el estilo arquitectónico REST. Los métodos corresponden a endpoints HTTP (GET), devolviendo recursos o respuestas HTTP (ResponseEntity).
+
+##### 4. Error/Exception Handling
+
+```kotlin
+class TorneoService(
+    private val torneoRepository: TorneoRepository,
+    private val eventoRepository: EventoRepository,
+    private val deporteRepository: DeporteRepository
+
+) {
+
+    fun crearTorneo(request: TorneoRequestDTO): TorneoResponseDTO {
+        val evento = eventoRepository.findById(request.eventoId)
+            .orElseThrow { RuntimeException("Evento con ID ${request.eventoId} no encontrado") }
+
+        val deporte = deporteRepository.findById(request.deporteId)
+            .orElseThrow { RuntimeException("Deporte con ID ${request.deporteId} no encontrado") }
+        .
+        .
+        .
+}
+```
+
+Se utiliza el manejo de excepciones para controlar errores, por ejemplo, con orElseThrow { RuntimeException("...") } cuando no se encuentra un recurso en la base de datos.
+
+#### 🔹 Prácticas de Codificación Limpia - Clean Code:
+
+##### 1. Definir constantes
+
+![Clean Code 1](./docs/img/CleanCode1.png)
+
+Es una práctica de código limpio porque:
+**- Evita duplicación:** La regla DRY (Don’t Repeat Yourself) es clave en clean code.
+**- Facilita mantenimiento:** Cambias el mensaje en un solo lugar.
+**- Mejora la legibilidad:** Mensajes descriptivos y centralizados.
+**- Preparación para internacionalización:** Fácil adaptar el código para múltiples idiomas.
+
+##### 2. Funciones cortas y con una sola responsabilidad
+
+```kotlin
+fun obtenerTorneosPorEvento(eventoId: Long): List<TorneoResponseDTO> {
+    return torneoRepository.findByEventoId(eventoId)
+        .map { convertirAResponseDTO(it) }
+}
+```
+
+##### 3. Estructura de Código Fuente
+
+
+
+##### 4. Estructura de Datos
+
+```kotlin
+val torneo = Torneo(
+    nombre = request.nombre,
+    fecha = LocalDate.parse(request.fecha),    
+    hora = LocalTime.parse(request.hora),       
+    direccion = request.direccion,
+    evento = evento,
+    deporte = deporte
+)
+
+val guardado = torneoRepository.save(torneo)
+```
+
+##### 5. Tratamiento de Errores
+
+```kotlin
+fun obtenerDeportePorNombre(@RequestParam nombre: String): ResponseEntity<DeporteResponseDTO> {
+    val deporte = deporteService.obtenerPorNombre(nombre)
+        ?: return ResponseEntity.notFound().build()
+    return ResponseEntity.ok(deporte)
+}
+```
+
 ### ⚙️ Gestión de Proyecto:
 
 Las gestiónes de desarrollo en equipos se realizaron con la herramienta Trello:

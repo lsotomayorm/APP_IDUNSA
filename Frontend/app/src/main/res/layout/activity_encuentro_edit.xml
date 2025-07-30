@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    android:padding="24dp">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="48dp"
+            android:paddingBottom="48dp">
+
+
+            <TextView
+                android:id="@+id/labelScoreEquipo1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Puntaje del Equipo 1"
+                android:labelFor="@id/scoreEquipo1"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:paddingBottom="4dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutScore1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/black"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@id/labelScoreEquipo1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/scoreEquipo1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:background="@drawable/textinputlayout_background" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/labelScoreEquipo2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Puntaje del Equipo 2"
+                android:labelFor="@id/scoreEquipo2"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:paddingTop="12dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutScore1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutScore2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/black"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@id/labelScoreEquipo2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/scoreEquipo2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:background="@drawable/textinputlayout_background" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/labelEstado"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Estado del Encuentro"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:paddingTop="12dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutScore2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <Spinner
+                android:id="@+id/estadoSpinner"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/spinner_background"
+                app:layout_constraintTop_toBottomOf="@id/labelEstado"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <TextView
+                android:id="@+id/labelGanador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Ganador"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:paddingTop="12dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintTop_toBottomOf="@id/estadoSpinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <Spinner
+                android:id="@+id/ganadorSpinner"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/spinner_background"
+                app:layout_constraintTop_toBottomOf="@id/labelGanador"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_button"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/ganadorSpinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

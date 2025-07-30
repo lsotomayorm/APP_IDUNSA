@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:background="@drawable/fondo">
+
+    <Button
+        android:id="@+id/btnGenerarEmparejamiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generar Emparejamientos"
+        android:visibility="gone"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="16dp" />
+
+    <ExpandableListView
+        android:id="@+id/expandableListViewEncuentros"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#90CAF9"
+        android:dividerHeight="1dp"
+        android:background="#40FFFFFF"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+</LinearLayout>

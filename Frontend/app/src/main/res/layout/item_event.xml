@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="#40FFFFFF"
+    android:layout_marginVertical="6dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/nombreEvento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Evento"
+        android:textSize="24sp"
+        android:textColor="#03A9F4"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/fechaInicio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Inicio : "
+        android:textSize="16sp"
+        android:textColor="#3E3A3A"
+        app:layout_constraintTop_toBottomOf="@id/nombreEvento"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/fechaFin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Fin : "
+        android:textSize="16sp"
+        android:textColor="#3E3A3A"
+        app:layout_constraintTop_toBottomOf="@id/fechaInicio"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <Button
+        android:id="@+id/editarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintTop_toBottomOf="@id/fechaFin"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/eliminarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintTop_toBottomOf="@id/fechaFin"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

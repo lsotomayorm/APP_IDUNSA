@@ -91,9 +91,9 @@ src/
     │   └── com/
     │       └── idunsa/
     │           └── app/
-    │               ├── AppIdunsaApplication.java  # Clase principal (Spring Boot)
+    │               ├── AppIdunsaApplication.java
     │
-    │               ├── dominio/                   # 🧠 Capa de dominio (pura)
+    │               ├── dominio/                   
     │               │   ├── torneo/
     │               │   │   ├── Torneo.java
     │               │   │   ├── Partido.java
@@ -105,13 +105,13 @@ src/
     │               │   └── comunes/
     │               │       └── Identificador.java
     │
-    │               ├── aplicacion/                # 🔁 Capa de aplicación (casos de uso)
+    │               ├── aplicacion/              
     │               │   ├── servicios/
     │               │   │   └── GestionTorneoService.java
     │               │   └── dtos/
     │               │       └── CrearTorneoDTO.java
     │
-    │               ├── infraestructura/           # 🗃️ Adaptadores de salida (JPA, APIs, etc.)
+    │               ├── infraestructura/          
     │               │   ├── persistencia/
     │               │   │   ├── repositorios/
     │               │   │   │   └── TorneoJpaRepository.java
@@ -120,13 +120,13 @@ src/
     │               │   └── configuracion/
     │               │       └── PersistenciaConfig.java
     │
-    │               ├── interfaz/                  # 🌐 Adaptadores de entrada (controladores)
+    │               ├── interfaz/                  
     │               │   ├── rest/
     │               │   │   └── TorneoController.java
     │               │   └── excepciones/
     │               │       └── ManejadorGlobal.java
     │
-    │               └── configuracion/             # ⚙️ Config global de Spring (CORS, beans, etc.)
+    │               └── configuracion/            
     │                   └── SeguridadConfig.java
     │
     └── resources/

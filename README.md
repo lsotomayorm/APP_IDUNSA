@@ -156,41 +156,7 @@ La estructura del proyecto sigue una arquitectura en capas organizada en paquete
 
 ![Paquetes](./docs/img/APP_IDUNSA_3.png)
 
-### Diagrama de Clases de Arquitectura
-
-<!-- Inserta aquí el diagrama de clases a nivel de arquitectura -->
-
-```plaintext
-classDiagram
-    Controller <|-- TorneoController
-    Controller <|-- EncuentroController
-    Controller <|-- EquipoController
-    Controller <|-- DeporteController
-
-    Service <|-- TorneoService
-    Service <|-- EncuentroService
-    Service <|-- EquipoService
-    Service <|-- DeporteService
-
-    TorneoService --> TorneoRepository
-    EncuentroService --> EncuentroRepository
-    EquipoService --> EquipoRepository
-    DeporteService --> DeporteRepository
-
-    TorneoService --> Torneo
-    EncuentroService --> Encuentro
-    EquipoService --> Equipo
-    DeporteService --> Deporte
-
-    TorneoController --> TorneoService
-    EncuentroController --> EncuentroService
-    EquipoController --> EquipoService
-    DeporteController --> DeporteService
-
-    Torneo <..> TorneoRequestDTO
-    Torneo <..> TorneoResponseDTO
-    Equipo <..> EquipoRequestDTO
-```
+---
 
 ### 🧠 Prácticas de Desarrollo Aplicadas:
 

@@ -4,7 +4,7 @@
 
 **Nombre del Proyecto:** APP IDUNSA  
 **Integrantes del Equipo:**
-- Paul Jesus Quispe Morocco (el mas gozu)
+- Paul Jesus Quispe Morocco
 - Luis Alberto Sotomayor Moya
 
 ---
@@ -22,14 +22,6 @@ Desde una perspectiva técnica, el proyecto se construye sobre una arquitectura 
 ---
 
 ## ⚙️ Funcionalidades
-
-### Diagrama de Casos de Uso (UML)
-
-<!-- Inserta aquí tu imagen del Diagrama de Casos de Uso -->
-![Casos de Uso](./docs/img/)
-
-
----
 
 ### Prototipo de la Interfaz de Usuario (GUI)
 
@@ -303,11 +295,12 @@ Se utiliza el manejo de excepciones para controlar errores, por ejemplo, con orE
 
 ![Clean Code 1](./docs/img/CleanCode1.png)
 
-Es una práctica de código limpio porque:
-**- Evita duplicación:** La regla DRY (Don’t Repeat Yourself) es clave en clean code.
-**- Facilita mantenimiento:** Cambias el mensaje en un solo lugar.
-**- Mejora la legibilidad:** Mensajes descriptivos y centralizados.
-**- Preparación para internacionalización:** Fácil adaptar el código para múltiples idiomas.
+Definir constantes es una práctica recomendada dentro del enfoque de **Clean Code** por las siguientes razones:
+
+- **Evita duplicación:** Se cumple la regla **DRY** (*Don’t Repeat Yourself*), reduciendo el código repetido.
+- **Facilita el mantenimiento:** Cualquier cambio en los valores solo se realiza en un único lugar.
+- **Mejora la legibilidad:** Las constantes descriptivas hacen que el código sea más claro y entendible.
+- **Prepara el sistema para internacionalización:** Centralizar mensajes facilita adaptarlos a múltiples idiomas en el futuro.
 
 ##### 2. Funciones cortas y con una sola responsabilidad
 

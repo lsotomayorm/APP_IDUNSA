@@ -154,6 +154,8 @@ La estructura del proyecto sigue una arquitectura en capas organizada en paquete
 - `com.idunsa.backend.service`  
   Contiene la **lógica de aplicación**, orquestando el flujo entre controladores, dominio y repositorios. Aquí se ubican los servicios que implementan los casos de uso del sistema.
 
+![Paquetes](./docs/img/APP_IDUNSA_3.png)
+
 ### Diagrama de Clases de Arquitectura
 
 <!-- Inserta aquí el diagrama de clases a nivel de arquitectura -->

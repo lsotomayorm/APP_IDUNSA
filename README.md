@@ -199,8 +199,38 @@ classDiagram
     Equipo <..> EquipoRequestDTO
 ```
 
+### 🧠 Prácticas de Desarrollo Aplicadas:
+
+```kotlin
+@Entity
+data class Torneo(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
+
+    var nombre: String = "",
+    var fecha: LocalDate = LocalDate.now(),
+    var hora: LocalTime = LocalTime.now(),
+    var direccion: String = "",
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "evento_id")
+    var evento: Evento? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "deporte_id", nullable = false)
+    var deporte: Deporte? = null,
+
+    @Column(columnDefinition = "TEXT")
+    var reglamento: String? = null
+
+)
+```
+
 ### ⚙️ Gestión de Proyecto:
 
 Las gestiónes de desarrollo en equipos se realizaron con la herramienta Trello:
 
 ![Trello de Proyecto](./docs/img/Trello.png)
+
+Enlace a [Trello](https://trello.com/invite/b/682c0773f278198ff928e567/ATTIf7f6967ec48dcb9369f59aa235ceb7689F4B2953/idunsa-app-gestion-de-eventos-deportivos)

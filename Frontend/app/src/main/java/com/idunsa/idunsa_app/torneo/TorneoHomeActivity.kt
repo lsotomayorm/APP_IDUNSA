@@ -11,6 +11,8 @@ import com.idunsa.idunsa_app.R
 import com.idunsa.idunsa_app.reglamento.ReglamentoHomeActivity
 import androidx.lifecycle.lifecycleScope
 import com.idunsa.idunsa_app.equipo.EquipoAddActivity
+import com.idunsa.idunsa_app.equipo.EquipoEmparejamientoActivity
+import com.idunsa.idunsa_app.equipo.EquipoListActivity
 import com.idunsa.idunsa_app.network.DeporteResponse
 import com.idunsa.idunsa_app.network.RetrofitClient
 import kotlinx.coroutines.launch
@@ -22,6 +24,8 @@ class TorneoHomeActivity : AppCompatActivity() {
     private lateinit var btnAtras: Button
     private lateinit var btnAgregarEquipo: Button
     private lateinit var btnListaEquipos: Button
+    private lateinit var btnEmparejamientos: Button
+    private lateinit var btnResultados: Button
 
 
     private var torneoId: Long = 0L
@@ -36,6 +40,8 @@ class TorneoHomeActivity : AppCompatActivity() {
 
         btnAgregarEquipo = findViewById(R.id.btnAgregarEquipo)
         btnListaEquipos = findViewById(R.id.btnListaEquipos)
+        btnEmparejamientos = findViewById(R.id.btnEmparejamientos)
+        btnResultados = findViewById(R.id.btnVerResultados)
 
 
         torneoId = intent.getLongExtra("torneo_id", 0L)
@@ -51,10 +57,6 @@ class TorneoHomeActivity : AppCompatActivity() {
 
         obtenerTipoDeporte(tipoDeporte)
 
-        findViewById<Button>(R.id.btnEmparejamientos).setOnClickListener {
-            Toast.makeText(this, "Emparejamientos (a implementar)", Toast.LENGTH_SHORT).show()
-        }
-
         findViewById<Button>(R.id.btnVerReglamento).setOnClickListener {
             if (torneoId != 0L) {
                 val intent = Intent(this, ReglamentoHomeActivity::class.java)
@@ -65,11 +67,6 @@ class TorneoHomeActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ID del torneo no válido", Toast.LENGTH_SHORT).show()
             }
 
-        }
-
-
-        findViewById<Button>(R.id.btnVerResultados).setOnClickListener {
-            Toast.makeText(this, "Ver resultados (a implementar)", Toast.LENGTH_SHORT).show()
         }
 
         btnAtras.setOnClickListener {
@@ -95,14 +92,29 @@ class TorneoHomeActivity : AppCompatActivity() {
                         btnAgregarEquipo.setOnClickListener {
                             val intent = Intent(this@TorneoHomeActivity, EquipoAddActivity::class.java).apply {
                                 putExtra("torneo_id", torneoId)
-                                putExtra("deporte_jugadores", deporte.jugadores)
-                                putExtra("deporte_suplentes", deporte.suplentes)
                             }
                             startActivity(intent)
                         }
 
                         btnListaEquipos.setOnClickListener {
-                            Toast.makeText(this@TorneoHomeActivity, btnListaEquipos.text, Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@TorneoHomeActivity, EquipoListActivity::class.java).apply {
+                                putExtra("torneo_id", torneoId)
+                            }
+                            startActivity(intent)
+                        }
+
+                        btnEmparejamientos.setOnClickListener  {
+                            val intent = Intent(this@TorneoHomeActivity, EquipoEmparejamientoActivity::class.java).apply {
+                                putExtra("torneo_id", torneoId)
+                            }
+                            startActivity(intent)
+                        }
+
+                        btnResultados.setOnClickListener  {
+                            val intent = Intent(this@TorneoHomeActivity, TorneoResultadoActivity::class.java).apply {
+                                putExtra("torneo_id", torneoId)
+                            }
+                            startActivity(intent)
                         }
 
                     } else {

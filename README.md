@@ -538,10 +538,18 @@ Nuestra arquitectura sigue un enfoque por capas. Separamos:
 
 ---
 
-### ⚙️ Gestión de Proyecto:
+### ⚙️ Gestión de Proyecto por Trello:
 
 Las gestiónes de desarrollo en equipos se realizaron con la herramienta Trello:
 
-![Trello de Proyecto](./docs/img/Trello.png)
+![Trello de Proyecto](./docs/img/Trello_2.png)
 
 Enlace a [Trello](https://trello.com/invite/b/682c0773f278198ff928e567/ATTIf7f6967ec48dcb9369f59aa235ceb7689F4B2953/idunsa-app-gestion-de-eventos-deportivos) del proyecto.
+
+---
+
+### 🔁 Calidad de Código Fuente:
+
+Reporte del proyecto generado por SonarQube:
+
+![Trello de Proyecto](./docs/img/Reporte.png)

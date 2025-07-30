@@ -28,7 +28,7 @@ class TorneoController(
 
     
     @DeleteMapping("/{id}")
-    fun eliminarTorneo(@PathVariable id: Long): ResponseEntity<Void> {
+    fun eliminarTorneo(@PathVariable id: Long): ResponseEntity<Unit> {
         torneoService.eliminarTorneo(id)
         return ResponseEntity.noContent().build()
     }

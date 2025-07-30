@@ -70,9 +70,7 @@ class EventoService(private val eventoRepository: EventoRepository) {
 
 
     fun eliminarEvento(id: Long) {
-        if (!eventoRepository.existsById(id)) {
-            throw IllegalArgumentException("Evento con ID $id no existe")
-        }
+        require(eventoRepository.existsById(id)) { "Evento con ID $id no existe" }
         eventoRepository.deleteById(id)
     }
 

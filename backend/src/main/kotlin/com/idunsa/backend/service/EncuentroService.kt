@@ -41,9 +41,8 @@ class EncuentroService(
     }
 
     fun generarEncuentrosPorTorneo(torneoId: Long) {
-        if (encuentroRepository.existsByTorneoId(torneoId)) {
-            throw IllegalStateException("Ya existen encuentros generados para este torneo.")
-        }
+        check(!encuentroRepository.existsByTorneoId(torneoId)) { "Ya existen encuentros generados para este torneo." }
+
 
         val torneo = torneoRepository.findById(torneoId).orElseThrow()
         val equipos = equipoRepository.findByTorneoId(torneoId)
@@ -85,18 +84,14 @@ class EncuentroService(
 
         encuentroRepository.saveAll(encuentrosPreliminares)
 
-        // Construir la lista de la ronda 1
         val ronda1Equipos = mutableListOf<Equipo?>()
 
-        // Equipos que clasifican directo (sin jugar preliminares)
         ronda1Equipos.addAll(clasificadosDirecto)
 
-        // Rellenar con nulls para esperar ganadores de preliminares
         repeat(cantidadPreliminares) {
             ronda1Equipos.add(null)
         }
 
-        // Llamada recursiva para generar el resto de rondas
         generarLlaves(ronda1Equipos, 1, torneo, horaActual, totalRondasIncluyendoPreliminar, tieneFasePreliminar)
 
     }
@@ -150,58 +145,62 @@ class EncuentroService(
 
         val siguienteRonda = List(encuentros.size) { null }
 
-        // Llamada recursiva con la hora acumulada
         return generarLlaves(siguienteRonda, ronda + 1, torneo, horaActual, totalRondas, tieneFasePreliminar)
 
     }
 
+    companion object {
+        private const val FINAL = "Final"
+        private const val SEMIFINAL = "Semifinal"
+        private const val CUARTOS_DE_FINAL = "Cuartos de Final"
+        private const val FASE_PRELIMINAR = "Fase Preliminar"
+        private const val VACIO = "VACÍO"
+    }
+
     fun obtenerNombreRonda(index: Int, totalRondas: Int, tieneFasePreliminar: Boolean): String {
         if (!tieneFasePreliminar && index == 0) {
-            return "Final"
+            return FINAL
         }
-        // Si hay fase preliminar, ajustamos las rondas restantes
         val rondasRestantes = if (tieneFasePreliminar) totalRondas - 1 else totalRondas
 
-        // Si estamos en la fase preliminar
         if (tieneFasePreliminar && index == 0) {
-            return "Fase Preliminar"
+            return FASE_PRELIMINAR
         }
 
-        // A partir de la ronda 1, asignamos los nombres de la siguiente manera:
         if (rondasRestantes >= 5) {
             return when (index) {
-                in 1 until rondasRestantes - 3 -> "Ronda $index"   // Para las rondas intermedias
-                rondasRestantes - 3 -> "Cuartos de Final"
-                rondasRestantes - 2 -> "Semifinal"
-                rondasRestantes - 1 -> "Final"
+                in 1 until rondasRestantes - 3 -> "Ronda $index"
+                rondasRestantes - 3 -> CUARTOS_DE_FINAL
+                rondasRestantes - 2 -> SEMIFINAL
+                rondasRestantes - 1 -> FINAL
                 else -> "Ronda $index"
             }
         }
 
-        // Para torneos con menos de 5 rondas
         return when (rondasRestantes) {
-            1 -> "Final"
+            1 -> FINAL
             2 -> when (index) {
-                1 -> "Semifinal"
-                2 -> "Final"
+                1 -> SEMIFINAL
+                2 -> FINAL
                 else -> "Ronda $index"
             }
             3 -> when (index) {
-                1 -> "Cuartos de Final"
-                2 -> "Semifinal"
-                3 -> "Final"
+                1 -> CUARTOS_DE_FINAL
+                2 -> SEMIFINAL
+                3 -> FINAL
                 else -> "Ronda $index"
             }
             4 -> when (index) {
                 1 -> "Ronda 1"
-                2 -> "Cuartos de Final"
-                3 -> "Semifinal"
-                4 -> "Final"
+                2 -> CUARTOS_DE_FINAL
+                3 -> SEMIFINAL
+                4 -> FINAL
                 else -> "Ronda $index"
             }
             else -> "Ronda $index"
         }
     }
+
 
     fun obtenerEncuentroPorId(id: Long): EncuentroResponse {
         val encuentro = encuentroRepository.findById(id).orElseThrow { 
@@ -262,9 +261,10 @@ class EncuentroService(
         val encuentro = encuentroRepository.findById(encuentroId)
             .orElseThrow { IllegalArgumentException("Encuentro no encontrado con ID $encuentroId") }
 
-        if (encuentro.estado != EstadoEncuentro.FINALIZADO || encuentro.ganador == null) {
-            throw IllegalStateException("El encuentro aún no está finalizado o no tiene un ganador")
+        check(encuentro.estado == EstadoEncuentro.FINALIZADO && encuentro.ganador != null) {
+            "El encuentro aún no está finalizado o no tiene un ganador"
         }
+
 
         val siguienteRonda = encuentro.ronda + 1
 

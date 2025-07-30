@@ -20,10 +20,8 @@ class EquipoService(
 
         val integranteIds = dto.integranteIds
         val integrantes = usuarioRepository.findAllById(integranteIds)
+        require(integrantes.size == integranteIds.size) { "Algunos integrantes no existen en el sistema." }
 
-        if (integrantes.size != integranteIds.size) {
-            throw IllegalArgumentException("Algunos integrantes no existen en el sistema.")
-        }
 
         val equipo = Equipo(
             nombre = dto.nombre,

@@ -90,29 +90,117 @@ Esta arquitectura promueve el desarrollo modular, desacoplado y orientado a nego
 
 ### Arquitectura Aplicada
 
-Se aplicó el enfoque **Domain-Driven Design (DDD)** y **Arquitectura Limpia** para la separación de responsabilidades y escalabilidad.
+Mediante la estructura de un proyecto bajo el marco de trabajo SpringBoot se aplicó el enfoque **Domain-Driven Design (DDD)** y **Arquitectura Limpia** para la separación de responsabilidades y escalabilidad.
+
+```plaintext
+src/
+└── main/
+    ├── java/
+    │   └── com/
+    │       └── idunsa/
+    │           └── app/
+    │               ├── AppIdunsaApplication.java  # Clase principal (Spring Boot)
+    │
+    │               ├── dominio/                   # 🧠 Capa de dominio (pura)
+    │               │   ├── torneo/
+    │               │   │   ├── Torneo.java
+    │               │   │   ├── Partido.java
+    │               │   │   ├── TorneoFactory.java
+    │               │   │   └── TorneoService.java
+    │               │   ├── usuario/
+    │               │   │   ├── Usuario.java
+    │               │   │   └── RolUsuario.java
+    │               │   └── comunes/
+    │               │       └── Identificador.java
+    │
+    │               ├── aplicacion/                # 🔁 Capa de aplicación (casos de uso)
+    │               │   ├── servicios/
+    │               │   │   └── GestionTorneoService.java
+    │               │   └── dtos/
+    │               │       └── CrearTorneoDTO.java
+    │
+    │               ├── infraestructura/           # 🗃️ Adaptadores de salida (JPA, APIs, etc.)
+    │               │   ├── persistencia/
+    │               │   │   ├── repositorios/
+    │               │   │   │   └── TorneoJpaRepository.java
+    │               │   │   └── entidades/
+    │               │   │       └── TorneoEntity.java
+    │               │   └── configuracion/
+    │               │       └── PersistenciaConfig.java
+    │
+    │               ├── interfaz/                  # 🌐 Adaptadores de entrada (controladores)
+    │               │   ├── rest/
+    │               │   │   └── TorneoController.java
+    │               │   └── excepciones/
+    │               │       └── ManejadorGlobal.java
+    │
+    │               └── configuracion/             # ⚙️ Config global de Spring (CORS, beans, etc.)
+    │                   └── SeguridadConfig.java
+    │
+    └── resources/
+        ├── application.yml
+        └── templates/ (si usas Thymeleaf, por ejemplo)
+```
 
 ### Diagrama de Paquetes
 
 <!-- Inserta aquí tu diagrama de paquetes -->
-![Diagrama de Paquetes](./docs/diagrama_paquetes.png)
+La estructura del proyecto sigue una arquitectura en capas organizada en paquetes, orientada a principios de Clean Architecture y DDD:
+
+- `com.idunsa.backend.controller`  
+  Contiene los **controladores REST** que exponen los endpoints HTTP. Representa la **capa de presentación** o interfaz del sistema.
+
+- `com.idunsa.backend.domain`  
+  Incluye las **entidades del dominio** y la **lógica de negocio central**, como modelos, agregados, y servicios del dominio. Esta capa es **independiente** de frameworks y bibliotecas externas.
+
+- `com.idunsa.backend.dto`  
+  Contiene los **Data Transfer Objects** que permiten la comunicación entre capas, evitando exponer directamente las entidades del dominio.
+
+- `com.idunsa.backend.repository`  
+  Define las **interfaces de persistencia** (repositorios) y sus implementaciones, generalmente integradas con JPA/Hibernate. Representa la infraestructura de acceso a datos.
+
+- `com.idunsa.backend.service`  
+  Contiene la **lógica de aplicación**, orquestando el flujo entre controladores, dominio y repositorios. Aquí se ubican los servicios que implementan los casos de uso del sistema.
 
 ### Diagrama de Clases de Arquitectura
 
 <!-- Inserta aquí el diagrama de clases a nivel de arquitectura -->
 ![Clases de Arquitectura](./docs/arquitectura_clases.png)
 
-### 📂 Estructura Base del Proyecto (Ejemplo de carpetas)
-
 ```plaintext
-src/
-├── domain/
-│   ├── entities/
-│   ├── value_objects/
-│   └── services/
-├── application/
-│   └── use_cases/
-├── infrastructure/
-│   └── repositories/
-└── interfaces/
-    └── controllers/
+classDiagram
+    Controller <|-- TorneoController
+    Controller <|-- EncuentroController
+    Controller <|-- EquipoController
+    Controller <|-- DeporteController
+
+    Service <|-- TorneoService
+    Service <|-- EncuentroService
+    Service <|-- EquipoService
+    Service <|-- DeporteService
+
+    TorneoService --> TorneoRepository
+    EncuentroService --> EncuentroRepository
+    EquipoService --> EquipoRepository
+    DeporteService --> DeporteRepository
+
+    TorneoService --> Torneo
+    EncuentroService --> Encuentro
+    EquipoService --> Equipo
+    DeporteService --> Deporte
+
+    TorneoController --> TorneoService
+    EncuentroController --> EncuentroService
+    EquipoController --> EquipoService
+    DeporteController --> DeporteService
+
+    Torneo <..> TorneoRequestDTO
+    Torneo <..> TorneoResponseDTO
+    Equipo <..> EquipoRequestDTO
+```
+
+### ⚙️ Gestión de Proyecto:
+
+Las gestiónes de desarrollo en equipos se realizaron con la herramienta Trello:
+
+![Trello de Proyecto](./docs/img/Trello.png)

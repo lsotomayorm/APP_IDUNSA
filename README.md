@@ -203,6 +203,8 @@ classDiagram
 
 #### 🔹 Estilos de Programación:
 
+##### 1. Persistent-Tables
+
 ```kotlin
 @Entity
 data class Torneo(
@@ -228,6 +230,8 @@ data class Torneo(
 
 )
 ```
+
+El uso de la anotación @Entity de JPA/Hibernate, que indica que la clase Torneo representa una tabla persistente en una base de datos relacional. Las anotaciones como @Id, @GeneratedValue, @ManyToOne, y @JoinColumn son típicas del mapeo objeto-relacional (ORM), que es característico del estilo Persistent-Tables.
 
 ### ⚙️ Gestión de Proyecto:
 
